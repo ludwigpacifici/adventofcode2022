@@ -15,7 +15,6 @@ fn run(input: &str, window_len: usize) -> usize {
         .windows(window_len)
         .enumerate()
         .find(|(_, w)| w.iter().collect::<HashSet<_>>().len() == window_len)
-        .unwrap()
-        .0
-        + window_len
+        .map(|(i, _)| i + window_len)
+        .expect("No window with unique elements")
 }
